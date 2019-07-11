@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="qcheck_2">
+    <!-- <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons> -->
+
+    <ion-buttons slot="start">
+      <ion-button (click)="mostrarUsuario( $event )">
+        <ion-icon slot="icon-only" icon-only name="person" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title text-capitalize text-center color="light"> {{ titulo }} </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="mostrarOpciones( $event )">
+        <ion-icon slot="icon-only" icon-only name="settings" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

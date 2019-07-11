@@ -1,0 +1,13 @@
+<app-header titulo="Historial"></app-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let registro of dataLocal.guardado" (click)="abrirRegistro( registro )" detail>
+      <ion-label>
+        <h2> {{ registro.type }} </h2>
+        <p> {{ registro.created | date: 'medium' }} </p>
+      </ion-label>
+      <ion-icon slot="start" [name]="registro.icon" color="primary"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
