@@ -167,7 +167,6 @@ let LoginPage = class LoginPage {
             });
             this.loading.present();
             const { role, data } = yield this.loading.onDidDismiss();
-            console.log('Loading dismissed!');
         });
     }
 };

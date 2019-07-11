@@ -26,7 +26,6 @@ let UsuarioService = class UsuarioService {
         const data = { email, password };
         return new Promise(resolve => {
             this.http.post(URL + '/user/login', data).subscribe(resp => {
-                console.log(resp);
                 if (resp['ok']) {
                     this.guardarToken(resp['token']);
                     resolve(true);
@@ -66,17 +65,10 @@ let UsuarioService = class UsuarioService {
         });
     }
     obtenerUsuario() {
-        this.cargarToken();
         const headers = new http_1.HttpHeaders({
             'x-token': this.token
         });
-        this.http.get(URL + '/user', { headers }).subscribe(resp => {
-            if (resp['ok']) {
-                this.usuario = resp['usuario'];
-                console.log(this.usuario);
-                return this.usuario;
-            }
-        });
+        return this.http.get(URL + '/user/get', { headers });
     }
     validarToken() {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {

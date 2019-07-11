@@ -9,23 +9,9 @@ import { Usuario } from 'interfaces/interfaces';
 })
 export class Tab2Page {
 
-  usuario: Usuario = {
-    name     : '',
-    lastname : '',
-    rut      : '',
-    email    : '',
-    phone    : '',
-    password : ''
-  };
-
   constructor(private usuarioService: UsuarioService ) {}
 
   ngOnInit() {
-    this.obtenerUsuario();
-  }
-
-  obtenerUsuario(): any{
-    this.usuario = this.usuarioService.obtenerUsuario();
-    console.log(this.usuario);
+    
   }
 }

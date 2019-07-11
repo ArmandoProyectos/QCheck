@@ -6,21 +6,8 @@ const usuario_service_1 = require("src/app/services/usuario.service");
 let Tab2Page = class Tab2Page {
     constructor(usuarioService) {
         this.usuarioService = usuarioService;
-        this.usuario = {
-            name: '',
-            lastname: '',
-            rut: '',
-            email: '',
-            phone: '',
-            password: ''
-        };
     }
     ngOnInit() {
-        this.obtenerUsuario();
-    }
-    obtenerUsuario() {
-        this.usuario = this.usuarioService.obtenerUsuario();
-        console.log(this.usuario);
     }
 };
 Tab2Page = tslib_1.__decorate([

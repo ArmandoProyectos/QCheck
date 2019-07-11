@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, PopoverController } from '@ionic/angular';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-pop-usuario',
@@ -8,9 +9,25 @@ import { NavController, PopoverController } from '@ionic/angular';
 })
 export class PopUsuarioComponent implements OnInit {
 
-  constructor( private navCtrl: NavController, private popoverCtrl: PopoverController ) { }
+  usuario = {
+    nombre   : '',
+    apellido : '',
+    rut      : '',
+    correo   : '',
+    telefono : ''
+  }
 
-  ngOnInit() {}
+  constructor(private navCtrl: NavController, private popoverCtrl: PopoverController, private usuarioService: UsuarioService ) { }
+
+  ngOnInit() {
+    this.usuarioService.obtenerUsuario().subscribe(resp => {
+      this.usuario.nombre   = resp['usuario'].name;
+      this.usuario.apellido = resp['usuario'].lastname;
+      this.usuario.rut      = resp['usuario'].rut;
+      this.usuario.correo   = resp['usuario'].email;
+      this.usuario.telefono = resp['usuario'].phone;
+    });
+  }
 
   cerrar() {
     this.popoverCtrl.dismiss({

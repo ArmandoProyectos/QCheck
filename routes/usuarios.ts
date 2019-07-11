@@ -112,42 +112,52 @@ userRoutes.post('/update', verificarToken, (req: any, res: express.Response) => 
     });
 })
 
-// Mostrar usuario
-userRoutes.post('/view', (req: any, res: express.Response) => {
-    const user = req.body;
+// Obtener Usuario
+userRoutes.get('/get', [verificarToken], (req: any, res: express.Response) => {
+    const usuario = req.usuario;
 
-    Usuarios.findOne({ email: user.email }, ( err, userDB) => {
-        if( err ) throw err;
-
-        if( !userDB ){
-            return res.json({
-                ok      : false,
-                mensaje : 'Correo/Contraseña incorrecta'
-            });
-        }
-
-        if (userDB.compararPassword(user.password) ){
-            const tokenUser = Token.getJwtToken({
-                _id      : userDB.id,
-                name   : userDB.name,
-                lastname : userDB.lastname,
-                rut      : userDB.rut,
-                email   : userDB.email,
-                phone : userDB.phone
-            });
-
-            res.json({
-                ok    : true,
-                user: userDB
-            });
-        } else{
-            return res.json({
-                ok    : false,
-                token : 'Correo/Contraseña incorrecta ***'
-            });
-        }
-    })
+    res.json({
+        ok: true,
+        usuario
+    });
 })
+
+// Mostrar usuario
+// userRoutes.get('/view', (req: any, res: express.Response) => {
+//     const user = req.body;
+
+//     Usuarios.findOne({ email: user.email }, ( err, userDB) => {
+//         if( err ) throw err;
+
+//         if( !userDB ){
+//             return res.json({
+//                 ok      : false,
+//                 mensaje : 'Correo/Contraseña incorrecta'
+//             });
+//         }
+
+//         if (userDB.compararPassword(user.password) ){
+//             const tokenUser = Token.getJwtToken({
+//                 _id      : userDB.id,
+//                 name   : userDB.name,
+//                 lastname : userDB.lastname,
+//                 rut      : userDB.rut,
+//                 email   : userDB.email,
+//                 phone : userDB.phone
+//             });
+
+//             res.json({
+//                 ok    : true,
+//                 user: userDB
+//             });
+//         } else{
+//             return res.json({
+//                 ok    : false,
+//                 token : 'Correo/Contraseña incorrecta ***'
+//             });
+//         }
+//     })
+// })
 
 // Validar Token
 userRoutes.get('/', [verificarToken], ( req: any, res: express.Response ) => {

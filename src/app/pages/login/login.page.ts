@@ -185,7 +185,5 @@ export class LoginPage implements OnInit {
     this.loading.present();
 
     const { role, data } = await this.loading.onDidDismiss();
-
-    console.log('Loading dismissed!');
   }
 }
